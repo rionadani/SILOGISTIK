@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://thymeleaf.org">
+
+<head>
+  <meta charset="UTF-8" />
+  <object th:include="~{fragments/common :: js}" th:remove="tag"></object>
+  <object th:include="~{fragments/common :: css}" th:remove="tag"></object>
+  <title>Daftar Permintaan Pengiriman</title>
+</head>
+
+<body>
+    <nav th:replace="~{fragments/navbar :: navbar(activePage='permintaanPengiriman')}"></nav>
+    <div class="container">
+      <div class="text-center pt-5">
+        <h2 style="font-weight: bold;">Daftar Permintaan Pengiriman</h2>
+      </div>
+
+      <div class="text-center m-3">
+        <a class="btn btn-primary " th:href="@{/permintaan-pengiriman/tambah}" style="text-align:center;margin-bottom: 20px;margin-top: 15px;">+ Tambah Permintaan Pengiriman</a>
+      </div>
+      <table id="tabelPermintaanPengiriman" class="table table-bordered" >
+          <thead style="margin-top: 3cm;">
+              <tr class="table-dark">
+                  <th style="text-align: center;">#</th>
+                  <th style="text-align: center;">Waktu Permintaan</th>
+                  <th style="text-align: center;">Nomor Pengiriman</th>
+                  <th style="text-align: center;">Nama Penerima</th>
+                  <th style="text-align: center;">Alamat Penerima</th>
+                  <th style="text-align: center;">Tanggal Pengiriman</th>
+                  <th style="text-align: center;">Action</th>
+              </tr>
+          </thead>
+          <tbody>
+              <tr th:each="permintaan, iterationStatus : ${listPermintaanPengirimanDTO}">
+                  <td class="text-center" th:text="${iterationStatus.count}"></td>
+                  <td class="text-center" th:text="${permintaan.waktuPermintaan}"></td>
+                  <td class="text-center" th:text="${permintaan.nomorPengiriman}"></td>
+                  <td class="text-center" th:text="${permintaan.namaPenerima}"></td>
+                  <td class="text-center" th:text="${permintaan.alamatPenerima}"></td>
+                  <td class="text-center" th:text="${permintaan.tanggalPengiriman}"></td>
+                  <td style="text-align: center;">
+                      <a type="button" class="btn btn-md btn-secondary" th:href="@{/permintaan-pengiriman/{id}(id=${permintaan.idPermintaanPengiriman})}">Detail</a>
+                  </td>
+              </tr>
+          </tbody>
+      </table>
+    </div>
+  </body>
+  
+  </html>

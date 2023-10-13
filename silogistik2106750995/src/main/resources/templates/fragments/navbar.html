@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8" />
+</head>
+
+<body>
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary" th:fragment="navbar">
+    <a class="navbar-brand fw-bold text-light ms-3" href="/">SILOGISTIK</a>
+    <button
+        class="navbar-toggler"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#navbarNavAltMarkup"
+        aria-controls="navbarNavAltMarkup"
+        aria-expanded="true"
+        aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup" style="margin-left: 23px;">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" th:classappend="${activePage == 'gudang' ? 'active' : ''}" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  Gudang
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  <li><a class="dropdown-item" th:href="@{/gudang}">Daftar Gudang</a></li>
+                  <li><a class="dropdown-item" th:href="@{/gudang/cari-barang}">Cari Barang</a></li>
+                </ul>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" li th:classappend="${activePage == 'barang' ? 'active' : ''}" th:href="@{/barang}">Barang</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" li th:classappend="${activePage == 'permintaanPengiriman' ? 'active' : ''}" th:href="@{/permintaan-pengiriman}">Permintaan Pengiriman</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+</body>
+</html>

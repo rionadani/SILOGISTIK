@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://thymeleaf.org">
+
+<head>
+  <meta charset="UTF-8" />
+  <object th:include="~{fragments/common :: js}" th:remove="tag"></object>
+  <object th:include="~{fragments/common :: css}" th:remove="tag"></object>
+  <title>Detail Barang</title>
+</head>
+
+<body>
+  <nav th:replace="~{fragments/navbar :: navbar(activePage='barang')}"></nav>
+  <div class="container" style="margin-top: 80px;">
+    <div class="row justify-content-center">
+        <div class="card" style="width: 70rem;padding-left: 0%;padding-right: 0%;">
+            <div class="card-header" style="padding-top: 10px;">
+                <div class="row">
+                    <div class="col">
+                        <h2 style="font-weight: bold;">Detail Barang</h2>
+                    </div>
+                    <div class="col" style="margin-top: 5px;">
+                        <a type="button" class="btn btn-md btn-primary float-end" th:href="@{/barang/{idBarang}/ubah(idBarang=${responseDTO.sku})}">Ubah barang</a>
+                    </div>
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="row" style="margin-top: 30px;">
+                    <div class="col">
+                        <h6>Merk </h6>
+                    </div>
+                    <div class="col">
+                        <h6 th:text="': ' + ${responseDTO.merkBarang}"> </h6>
+                    </div>
+                </div>
+                <div class="row" style="margin-top: 30px;">
+                    <div class="col">
+                        <h6>SKU </h6>
+                    </div>
+                    <div class="col">
+                        <h6 th:text="': ' + ${responseDTO.sku}"> </h6>
+                    </div>
+                </div>
+                <div class="row" style="margin-top: 30px;">
+                    <div class="col">
+                        <h6>Tipe Barang </h6>
+                    </div>
+                    <div class="col">
+                        <h6 th:if="${responseDTO.tipeBarang} == 1">: Produk Elektronik</h6>
+                        <h6 th:if="${responseDTO.tipeBarang} == 2">: Pakaian & Aksesoris</h6>
+                        <h6 th:if="${responseDTO.tipeBarang} == 3">: Makanan & Minuman</h6>
+                        <h6 th:if="${responseDTO.tipeBarang} == 4">: Kosmetik</h6>
+                        <h6 th:if="${responseDTO.tipeBarang} == 5">: Perlengkapan Rumah</h6>
+                    </div>
+                </div>
+                <div class="row" style="margin-top: 30px;">
+                    <div class="col">
+                        <h6>Total Stok </h6>
+                    </div>
+                    <div class="col">
+                        <h6 th:text="': ' + ${responseDTO.stok}"> </h6>
+                    </div>
+                </div>
+                <div class="row" style="margin-top: 30px;">
+                    <div class="col">
+                        <h6>Harga </h6>
+                    </div>
+                    <div class="col">
+                        <h6 th:text="': Rp' + ${responseDTO.hargaBarang}"> </h6>
+                    </div>
+                </div>
+                
+
+                <h4 style="font-weight: bold;margin-top: 30px;">Daftar gudang</h4>
+                <table class="table table-bordered">
+                    <thead>
+                        <tr class="table-dark">
+                            <th class="text-center">#</th>
+                            <th class="text-center"Nama Gudang</th>
+                            <th class="text-center">Alamat Gudang</th>
+                            <th class="text-center">Stok</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="gudangBarang, iterationStatus : ${responseDTO.listGudangBarang}">
+                            <td class="text-center" th:text="${iterationStatus.count}"></td>
+                            <td class="text-center"><a th:href="@{/gudang/{idGudang}(idGudang=${gudangBarang.gudang.idGudang})}" th:text="${gudangBarang.gudang.namaGudang}"></a></td>
+                            <td class="text-center" th:text="${gudangBarang.gudang.alamatGudang}"></td>
+                            <td class="text-center" th:text="${gudangBarang.stok}"></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="text-center m-3">
+                    <a type="button" class="btn btn-secondary btn-md" th:href="@{/barang}">Kembali</a>
+                </div>
+            </div>
+        </div>
+    </div>
+  </div>
+</body>
+
+</html>

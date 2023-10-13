@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://thymeleaf.org">
+
+<head>
+  <meta charset="UTF-8" />
+  <object th:include="~{fragments/common :: js}" th:remove="tag"></object>
+  <object th:include="~{fragments/common :: css}" th:remove="tag"></object>
+  <title>Detail Gudang</title>
+</head>
+
+<body>
+  <nav th:replace="~{fragments/navbar :: navbar(activePage='gudang')}"></nav>
+  <div class="container" style="margin-top: 80px;">
+    <div class="row justify-content-center">
+        <div class="card" style="width: 70rem;padding-left: 0%;padding-right: 0%;">
+            <div class="card-header" style="padding-top: 10px;">
+                <div class="row">
+                    <div class="col">
+                        <h2 style="font-weight: bold;">Detail Gudang</h2>
+                    </div>
+                    <div class="col" style="margin-top: 5px;">
+                        <a type="button" class="btn btn-md btn-primary float-end" th:href="@{/gudang/{idGudang}/restock-barang(idGudang=${responseDTO.idGudang})}">+ Restock Barang</a>
+                    </div>
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="row" style="margin-top: 30px;">
+                    <div class="col">
+                        <h6>Nama Gudang </h6>
+                    </div>
+                    <div class="col">
+                        <h6 th:text="': ' + ${responseDTO.namaGudang}"> </h6>
+                    </div>
+                </div>
+                <div class="row" style="margin-top: 30px;">
+                    <div class="col">
+                        <h6>Alamat Gudang </h6>
+                    </div>
+                    <div class="col">
+                        <h6 th:text="': ' + ${responseDTO.alamatGudang}"> </h6>
+                    </div>
+                </div>
+
+                <h4 style="font-weight: bold;margin-top: 30px;">Daftar barang tersedia</h4>
+                <table class="table table-bordered">
+                    <thead>
+                        <tr class="table-dark">
+                            <th style="text-align: center;">#</th>
+                            <th style="text-align: center;">SKU</th>
+                            <th style="text-align: center;">Merk</th>
+                            <th style="text-align: center;">Stok</th>
+                            <th style="text-align: center;">Harga</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="gudangBarang, iterationStatus : ${responseDTO.listGudangBarang}">
+                            <td class="text-center" th:text="${iterationStatus.count}"></td>
+                            <td class="text-center"><a th:href="@{/barang/{idBarang}(idBarang=${gudangBarang.barang.sku})}" th:text="${gudangBarang.barang.sku}"></a></td>
+                            <td class="text-center" th:text="${gudangBarang.barang.merkBarang}"></td>
+                            <td class="text-center" th:text="${gudangBarang.stok}"></td>
+                            <td class="text-center" th:text="'Rp' + ${gudangBarang.barang.hargaBarang}"></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="text-center m-3">
+                    <a type="button" class="btn btn-secondary btn-md" th:href="@{/gudang}">Kembali</a>
+                </div>
+            </div>
+        </div>
+    </div>
+  </div>
+</body>
+
+</html>

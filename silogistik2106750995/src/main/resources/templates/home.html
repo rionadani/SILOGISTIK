@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://thymeleaf.org">
+
+<head>
+  <meta charset="UTF-8">
+  <object th:include="~{fragments/common :: js}" th:remove="tag"></object>
+  <object th:include="~{fragments/common :: css}" th:remove="tag"></object>
+  <title>Home</title>
+</head>
+
+<body>
+  <nav th:replace="~{fragments/navbar :: navbar(activePage='home')}"></nav>
+  <div class="container text-center">
+    <div class="row pt-5 pb-2">
+      <img th:src="@{/images/logistics_logo.jpg}" style="width: 250px;margin-left: auto;margin-right: auto;">
+      <h1 style="font-weight: bolder;margin-top: 10px;margin-bottom: 30px;">
+        SILOGISTIK
+      </h1>
+    </div>
+    <div class="row">
+      <div class="col">
+        <div class="card text-center" style="background-color:#0d6efd;color: white;">
+          <div class="card-body">
+            <h5 class="card-title">Gudang</h5>
+            <h4 class="card-text" th:text="${jumlahGudang}"></h4>
+            <h7 class="card-title">gudang</h7>
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="card text-center" style="background-color:#0d6efd;color: white;opacity:80%;">
+          <div class="card-body">
+            <h5 class="card-title">Barang</h5>
+            <h4 class="card-text" th:text="${jumlahBarang}"></h4>
+            <h7 class="card-title">barang</h7>
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="card text-center" style="background-color:#0d6efd;color: white;opacity:60%;">
+          <div class="card-body">
+            <h5 class="card-title">Permintaan pengiriman</h5>
+            <h4 class="card-text" th:text="${jumlahPermintaan}"></h4>
+            <h7 class="card-title">permintaan pengiriman</h7>
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="card text-center" style="background-color:#0d6efd;color: white;opacity: 50%;">
+          <div class="card-body">
+            <h5 class="card-title">Karyawan</h5>
+            <h4 class="card-text" th:text="${jumlahKaryawan}"></h4>
+            <h7 class="card-title">karyawan</h7>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</body>
+
+</html>

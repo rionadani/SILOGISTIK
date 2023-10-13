@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://thymeleaf.org">
+
+<head>
+  <meta charset="UTF-8" />
+  <object th:include="~{fragments/common :: js}" th:remove="tag"></object>
+  <object th:include="~{fragments/common :: css}" th:remove="tag"></object>
+  <title>Ubah Barang</title>
+</head>
+
+<body>
+  <nav th:replace="~{fragments/navbar :: navbar(activePage='barang')}"></nav>
+  <div class="container" style="margin-top: 80px;">
+    <div class="row justify-content-center">
+        <div class="card" style="width: 70rem;padding-left: 0%;padding-right: 0%;">
+            <div class="card-header" style="padding-top: 10px;">
+                <div class="row">
+                    <div class="col">
+                        <h2 style="font-weight: bold; text-align: center;">Ubah Barang</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="card-body">
+                <form th:object="${barangDTO}" method="POST">
+                    <input type="hidden" th:field="*{sku}">
+                    <input type="hidden" th:field="*{tipeBarang}">
+                    SKU: <br>
+                    <input class="form-control" type="text" th:field="*{sku}" disabled/>
+                    <br><br>
+
+                    Merk Barang: <br>
+                    <input class="form-control" type="text" th:field="*{merkBarang}" />
+                    <br><br>
+                    
+                    Tipe Barang: <br>
+                    <select class="form-select" th:field="*{tipeBarang}" disabled>
+                        <option th:value="1">Produk Elektronik</option>
+                        <option th:value="2">Pakaian & Aksesoris</option>
+                        <option th:value="3">Makanan & Minuman</option>
+                        <option th:value="4">Kosmetik</option>
+                        <option th:value="5">Perlengkapan Rumah</option>
+                    </select>
+                    <br><br>
+        
+                    Harga: <br>
+                    <input required class="form-control" type="number" th:field="*{hargaBarang}" />
+                    <br><br>
+                    
+                    <div class="text-center m-3">
+                        <a class="btn btn-danger" th:href="@{/barang}">Batal</a>
+                        <button class="btn btn-primary" type="submit">Submit</button>
+                    </div>
+                    
+                </form>
+            </div>
+        </div>
+    </div>
+  </div>
+</body>
+
+</html>

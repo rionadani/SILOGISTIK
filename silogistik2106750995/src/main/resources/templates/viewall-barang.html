@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://thymeleaf.org">
+
+<head>
+  <meta charset="UTF-8" />
+  <object th:include="~{fragments/common :: js}" th:remove="tag"></object>
+  <object th:include="~{fragments/common :: css}" th:remove="tag"></object>
+  <title>Daftar Barang</title>
+</head>
+
+<body>
+    <nav th:replace="~{fragments/navbar :: navbar(activePage='barang')}"></nav>
+    <div class="container">
+      <div class="text-center pt-5">
+        <h2 style="font-weight: bold;">Daftar Barang</h2>
+      </div>
+
+      <div class="text-center m-3">
+        <a class="btn btn-primary " th:href="@{/barang/tambah}" style="text-align:center;margin-bottom: 20px;margin-top: 15px;">+ Tambah Barang</a>
+      </div>
+      <table id="tabelBarang" class="table table-bordered" >
+          <thead style="margin-top: 3cm;">
+              <tr class="table-dark">
+                  <th style="text-align: center;">#</th>
+                  <th style="text-align: center;">SKU</th>
+                  <th style="text-align: center;">Merk</th>
+                  <th style="text-align: center;">Stok</th>
+                  <th style="text-align: center;">Harga</th>
+                  <th style="text-align: center;">Action</th>
+              </tr>
+          </thead>
+          <tbody>
+              <tr th:each="barang, iterationStatus : ${listBarangDTO}">
+                  <td class="text-center" th:text="${iterationStatus.count}"></td>
+                  <td class="text-center" th:text="${barang.sku}"></td>
+                  <td class="text-center" th:text="${barang.merkBarang}"></td>
+                  <td class="text-center" th:text="${barang.stok}"></td>
+                  <td class="text-center" th:text="'Rp' + ${barang.hargaBarang}"></td>
+                  <td style="text-align: center;">
+                      <a type="button" class="btn btn-md btn-secondary" th:href="@{/barang/{idBarang}(idBarang=${barang.sku})}">Detail</a>
+                  </td>
+              </tr>
+          </tbody>
+      </table>
+    </div>
+  </body>
+  
+  </html>
