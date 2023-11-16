@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://thymeleaf.org">
+
+<head>
+  <meta charset="UTF-8" />
+  <object th:include="~{fragments/common :: js}" th:remove="tag"></object>
+  <object th:include="~{fragments/common :: css}" th:remove="tag"></object>
+  <title>Cari Barang</title>
+</head>
+
+<body>
+  <nav th:replace="~{fragments/navbar :: navbar(activePage='gudang')}"></nav>
+  <div class="container">
+    <div class="text-center pt-5">
+      <h2 style="font-weight: bold;">Cari Barang</h2>
+    </div>
+    <div class="row justify-content-center float-center" style="margin-top: 100px;">        
+      <form method="GET">
+        <div class="input-group" style="width: 1000px;margin: auto;">
+          <select class="form-select" name="kategori">
+                <option th:value="1">Produk Elektronik</option>
+                <option th:value="2">Pakaian & Aksesoris</option>
+                <option th:value="3">Makanan & Minuman</option>
+                <option th:value="4">Kosmetik</option>
+                <option th:value="5">Perlengkapan Rumah</option>
+          </select>
+          <button type="submit" class="btn btn-primary">Cari</button>
+        </div>
+      </form>  
+    </div>
+      
+        
+    <table th:if="${listBarang} != null" class=" table table-bordered" style="margin-top: 30px;">
+      <thead>
+          <tr class="table-dark">
+              <th class="text-center">SKU</th>
+              <th class="text-center">Tipe barang</th>
+              <th class="text-center">Nama barang</th>
+          </tr>
+      </thead>
+      <tbody>
+          <tr class="text-center" th:each="barang, iterationStatus: ${listBarang}">
+              <td class="text-center" th:text="${barang.sku}"></td>
+              <td class="text-center" th:text="${barang.tipeBarang}"></td>
+              <td class="text-center" th:text="${barang.merkBarang}"></td>
+          </tr>
+      </tbody>
+      </table>
+  </div>
+</body>
+
+</html>

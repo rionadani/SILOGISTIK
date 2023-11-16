@@ -19,4 +19,6 @@ public interface BarangService {
 
     Barang updateBarang(Barang barang);
 
+    List<Barang> getListBarangByKategori(Integer kategori);
+
 }

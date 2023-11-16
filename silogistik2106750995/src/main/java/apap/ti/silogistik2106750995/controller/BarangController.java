@@ -17,6 +17,7 @@ import apap.ti.silogistik2106750995.dto.request.CreateBarangRequestDTO;
 import apap.ti.silogistik2106750995.dto.request.UpdateBarangRequestDTO;
 import apap.ti.silogistik2106750995.dto.response.ReadBarangResponseDTO;
 import apap.ti.silogistik2106750995.model.Barang;
+import apap.ti.silogistik2106750995.model.GudangBarang;
 import apap.ti.silogistik2106750995.service.BarangService;
 import apap.ti.silogistik2106750995.service.GudangService;
 import apap.ti.silogistik2106750995.service.KaryawanService;
@@ -132,5 +133,19 @@ public class BarangController {
         model.addAttribute("barang", barang);
 
         return "success-update-barang";
+    }
+
+    @GetMapping("/barang/cari-barang")
+    public String cariBarang(Model model){
+        return "cari-barang-by-kategori";
+    }
+
+    @GetMapping(value = "/barang/cari-barang", params = {"kategori"})
+    public String cariBarangHasil(@RequestParam("kategori") Integer kategori, Model model){
+        var listBarang = barangService.getListBarangByKategori(kategori);
+    
+        model.addAttribute("listBarang", listBarang);
+
+        return "cari-barang-by-kategori";
     }
 }

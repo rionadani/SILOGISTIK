@@ -1,6 +1,7 @@
 package apap.ti.silogistik2106750995.service;
 
 import java.util.List;
+import java.util.ArrayList;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -83,5 +84,19 @@ public class BarangServiceImpl implements BarangService{
             return barang;
         }
         return null;
+    }
+
+    @Override
+    public List<Barang> getListBarangByKategori(Integer kategori){
+        List<Barang> listBarang = new ArrayList<>();
+
+        for(Barang barang : getAllBarang()){
+            if(barang.getTipeBarang() == kategori){
+                listBarang.add(barang);
+            }
+        }
+
+        return listBarang;
+
     }
 }
